@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import Rating from "./Rating";
 
 /* my = margem no eixo y, p = padding em volta toda, rounded = border */
 
@@ -18,9 +19,11 @@ const Product = (props) => {
             </Card.Body>
 
             <Card.Text as="div">
-                <div className="my-3">
-                    {props.product.rating} de {props.product.numReviews} avaliações{" "}
-                </div>
+                <Rating
+                    value={props.product.rating}
+                    text={`${props.product.numReviews} avaliações`}
+                    /* Poderia ter: color='red' */
+                />
             </Card.Text>
 
             <Card.Text as="h3">R${props.product.price}</Card.Text>

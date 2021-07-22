@@ -16,7 +16,8 @@ const HomeScreen = () => {
 
             <Row>
                 {products.map((product) => (
-                    <Col sm={12} md={6} lg={4} xl={3}>
+                    // Quando fazemos uma lista, cada item precisa ser uma chave (key) única
+                    <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
                         <Product product={product} />
                     </Col>
                 ))}
