@@ -56,7 +56,6 @@ const productSchema = new Schema(
         countInStock: {
             type: Number,
             required: true,
-            unique: true,
             default: 0,
         },
     },
