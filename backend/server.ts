@@ -1,7 +1,8 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import connectDB from "./config/db";
 import dotenv from "dotenv";
 import productRoutes from "./routes/productRoutes";
+import { notFound, errorHandler } from "./middlewares/errorMiddleware";
 
 dotenv.config();
 
@@ -17,6 +18,10 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/products", productRoutes);
+
+app.use(notFound);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     return console.log(
