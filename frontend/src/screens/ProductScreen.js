@@ -12,6 +12,7 @@ import { listProductDetails } from "../actions/productActions";
 const ProductScreen = ({ match }) => {
     //const product = products.find((p) => p._id === match.params.id);
     //const [product, setProduct] = useState({});
+
     const dispatch = useDispatch();
 
     const productDetails = useSelector((state) => state.productDetails);

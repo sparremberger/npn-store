@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 
 import { listProducts } from "../actions/productActions";
+import { listProductDetails } from "../actions/productActions"; //
 //import products from "../products";
 
 /* Confere o products.map na cheatsheet qualquer coisa.
@@ -21,6 +22,11 @@ const HomeScreen = () => {
 
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
+
+    // Limpa o estado anterior
+    useEffect(() => {
+        dispatch(listProductDetails());
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(listProducts());

@@ -29,10 +29,15 @@ export const listProducts = () => async (dispatch) => {
 export const listProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST });
-
-        const { data } = await axios.get(`/api/products/${id}`);
-
-        dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
+        if (id) {
+            const { data } = await axios.get(`/api/products/${id}`);
+            dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
+        } else {
+            dispatch({
+                type: PRODUCT_DETAILS_SUCCESS,
+                payload: { product: { reviews: [] } },
+            });
+        }
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
@@ -43,3 +48,5 @@ export const listProductDetails = (id) => async (dispatch) => {
         });
     }
 };
+
+export const listProductDetailsClear = () => (dispatch) => {};
