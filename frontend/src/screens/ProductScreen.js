@@ -20,7 +20,7 @@ import { listProductDetails } from "../actions/productActions";
 const ProductScreen = ({ history, match }) => {
     //const product = products.find((p) => p._id === match.params.id);
     //const [product, setProduct] = useState({});
-    const [qty, setQty] = useState(0);
+    const [qty, setQty] = useState(1);
 
     const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ const ProductScreen = ({ history, match }) => {
     }, [dispatch, match]);
 
     const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?qty=${qty}`);
+        history.push(`/carrinho/${match.params.id}?qty=${qty}`);
     };
 
     return (
