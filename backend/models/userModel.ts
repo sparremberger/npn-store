@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -26,6 +28,11 @@ const userSchema = new Schema(
         timestamps: true,
     }
 );
+
+userSchema.methods.matchPassword = async function (enteredPassword) {
+    const result = await bcrypt.compare(enteredPassword, this.password);
+    return result;
+};
 
 // Da documentação do Mongoose:
 // The first argument is the singular name of the collection your model is for.
