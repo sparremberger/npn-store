@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
+import generateToken from "../utils/generateToken";
 import User from "../models/userModel";
 
 // @desc Autentica usuário e recebe token
@@ -15,7 +16,7 @@ const authUser = asyncHandler(async (req: Request, res: Response) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: null,
+            token: generateToken(user.id),
         });
     } else {
         res.status(401);
@@ -23,4 +24,23 @@ const authUser = asyncHandler(async (req: Request, res: Response) => {
     }
 });
 
-export { authUser };
+// @desc Pega o perfil do usuário
+// @route GET /api/users/profile
+// @access Private
+const getUserProfile = asyncHandler(async (req: any, res: Response) => {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+        });
+    } else {
+        res.status(404);
+        throw new Error("Usuário não encontrado");
+    }
+});
+
+export { authUser, getUserProfile };

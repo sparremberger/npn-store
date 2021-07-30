@@ -12,9 +12,6 @@ connectDB();
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-const NODE_ENV = process.env.NODE_ENV;
-
 // ESSES DOIS e somente esses dois precisam ir antes das rotas, caso contrário o req.body vai vazio
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // essencial pra poder ler o req.body
@@ -29,8 +26,8 @@ app.get("/", (req: Request, res: Response) => {
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     return console.log(
-        `server is listening in ${NODE_ENV} mode on port ${PORT}`
+        `server is listening in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`
     );
 });

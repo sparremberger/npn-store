@@ -1,9 +1,8 @@
 import express from "express";
-import { getProductById } from "../controllers/productController";
+import { authUser, getUserProfile } from "../controllers/userController";
+import { protect } from "../middlewares/authMiddleware";
 const router = express.Router();
-
-import { authUser } from "../controllers/userController";
-
 router.post("/login", authUser);
+router.route("/profile").get(protect, getUserProfile);
 
 export default router;
