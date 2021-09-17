@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 // ! é o non null assertion operator
 const connectDB = async () => {

@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import productRoutes from "./routes/productRoutes";
 import userRoutes from "./routes/userRoutes";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware";
-import bodyParser from "body-parser";
 
 dotenv.config();
 
