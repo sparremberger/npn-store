@@ -12,7 +12,6 @@ import {
 } from "react-bootstrap";
 import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
-import { productDetailsReducer } from "../reducers/productReducers";
 
 const CartScreen = ({ match, location, history }) => {
     const productId = match.params.id;
